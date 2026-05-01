@@ -13,14 +13,14 @@ juce_add_plugin(AudioLabPro
     FORMATS VST3
     PRODUCT_NAME "AudioLabPro")
 
-# Questa riga risolve gli errori di BinaryData e background_png
-juce_add_binary_data(AudioLabAssets SOURCES console.jpg)
+# Questa riga collega l'immagine background.png al progetto
+juce_add_binary_data(AudioLabAssets SOURCES background.png)
 
 target_sources(AudioLabPro PRIVATE
     Source/PluginProcessor.cpp
     Source/PluginEditor.cpp)
 
-# Aggiungiamo juce_dsp per risolvere l'errore FFT
+# Qui aggiungiamo tutte le librerie necessarie, incluso il modulo DSP
 target_link_libraries(AudioLabPro PRIVATE
     AudioLabAssets
     juce::juce_audio_utils
