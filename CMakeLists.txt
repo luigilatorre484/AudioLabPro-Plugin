@@ -13,14 +13,13 @@ juce_add_plugin(AudioLabPro
     FORMATS VST3
     PRODUCT_NAME "AudioLabPro")
 
-# Collega il file che hai caricato
+# Crea le risorse binarie usando il nome esatto del tuo file
 juce_add_binary_data(AudioLabAssets SOURCES console.png)
 
 target_sources(AudioLabPro PRIVATE
     Source/PluginProcessor.cpp
     Source/PluginEditor.cpp)
 
-# Aggiunge juce_dsp per correggere l'errore forwardFFT
 target_link_libraries(AudioLabPro PRIVATE
     AudioLabAssets
     juce::juce_audio_utils
