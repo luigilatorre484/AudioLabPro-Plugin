@@ -1,6 +1,4 @@
 cmake_minimum_required(VERSION 3.15)
-
-# Aggiungiamo la versione qui (1.0.0)
 project(AudioLabPro VERSION 1.0.0)
 
 include(FetchContent)
@@ -15,11 +13,17 @@ juce_add_plugin(AudioLabPro
     FORMATS VST3
     PRODUCT_NAME "AudioLabPro")
 
+# Questa riga risolve gli errori di BinaryData e background_png
+juce_add_binary_data(AudioLabAssets SOURCES console.jpg)
+
 target_sources(AudioLabPro PRIVATE
     Source/PluginProcessor.cpp
     Source/PluginEditor.cpp)
 
+# Aggiungiamo juce_dsp per risolvere l'errore FFT
 target_link_libraries(AudioLabPro PRIVATE
+    AudioLabAssets
     juce::juce_audio_utils
     juce::juce_audio_processors
-    juce::juce_gui_basics)
+    juce::juce_gui_basics
+    juce::juce_dsp)
