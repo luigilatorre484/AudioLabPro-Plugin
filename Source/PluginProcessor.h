@@ -1,6 +1,6 @@
 #pragma once
 #include <juce_audio_processors/juce_audio_processors.h>
-#include <juce_dsp/juce_dsp.h> // Indispensabile per FFT
+#include <juce_dsp/juce_dsp.h> // <--- Per le funzioni FFT
 
 // ... resto del codice ...
 #include <juce_gui_basics/juce_gui_basics.h>
