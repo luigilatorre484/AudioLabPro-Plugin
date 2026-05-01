@@ -14,7 +14,8 @@ juce_add_plugin(AudioLabPro
     PRODUCT_NAME "AudioLabPro")
 
 # Questa riga collega l'immagine background.png al progetto
-juce_add_binary_data(AudioLabAssets SOURCES background.png)
+# Usa console.png invece di background.png
+juce_add_binary_data(AudioLabAssets SOURCES console.png)
 
 target_sources(AudioLabPro PRIVATE
     Source/PluginProcessor.cpp
