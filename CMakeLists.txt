@@ -1,8 +1,24 @@
 cmake_minimum_required(VERSION 3.15)
+project(AudioLabPro)
 
-project(AudioLabPro VERSION 0.0.1)
+# Scarica JUCE automaticamente
+include(FetchContent)
+FetchContent_Declare(juce URL https://github.com/juce-framework/JUCE/archive/refs/tags/7.0.5.zip)
+FetchContent_MakeAvailable(juce)
 
-# Aggiunge i file della cartella Source
-file(GLOB_RECURSE SourceFiles "Source/*.cpp" "Source/*.h")
+juce_add_plugin(AudioLabPro
+    COMPANY_NAME "LuigiLaTorre"
+    IS_SYNTH FALSE
+    NEEDS_MIDI_INPUT TRUE
+    NEEDS_MIDI_OUTPUT TRUE
+    FORMATS VST3
+    PRODUCT_NAME "AudioLabPro")
 
-add_executable(AudioLabPro ${SourceFiles})
+target_sources(AudioLabPro PRIVATE
+    Source/PluginProcessor.cpp
+    Source/PluginEditor.cpp)
+
+target_link_libraries(AudioLabPro PRIVATE
+    juce::juce_audio_utils
+    juce::juce_audio_processors
+    juce::juce_gui_basics)
